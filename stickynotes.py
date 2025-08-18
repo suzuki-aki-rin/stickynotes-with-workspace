@@ -482,7 +482,8 @@ class NoteWindow(tk.Toplevel):
         # self.attributes("-type", "toolbar")
         # self.overrideredirect(True)
 
-        self.wm_attributes("-type", "splash")
+        # self.wm_attributes("-type", "splash")
+        self.wm_attributes("-type", "utility")
 
         self.protocol("WM_DELETE_WINDOW", self.close)
         self.note_name = note_name

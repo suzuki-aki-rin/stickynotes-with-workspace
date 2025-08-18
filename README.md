@@ -47,8 +47,11 @@ include-system-site-packages = true
 ``` python
 python main.py # with task tray
 python stickynotes.py # without task tray
-
 ```
+
+- Attention:
+When notes move to another workspace by using window manager,
+such as using title bar, the app cannot track it.
 
 ## Todo
 
