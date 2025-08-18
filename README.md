@@ -16,12 +16,19 @@ A stickynote app that remembers its workspace.
 
 - XUBUNTU 25.04
 - Python 3.13
-- tasktray: AppIndicator
+- tasktray: AppIndicator, GNOME?
 
 ## Requirements
 
-See Requirements.txt
-If using task tray, tasktray backend may be needed.
+- wmctrl --- Essential for changing workspace
+
+``` bash
+apt install wmctrl
+```
+
+- Python modules: See Requirements.txt
+
+- If using task tray, tasktray backend may be needed.
 
 ```bash
 apt install libayatana-appindicator3-1 gir1.2-ayatanaappindicator3-0.1
