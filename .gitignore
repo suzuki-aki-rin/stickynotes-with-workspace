@@ -1,4 +1,9 @@
 # Byte-compiled / optimized / DLL files
+
+# user data
+backups/
+notes_state.json
+
 __pycache__/
 *.py[codz]
 *$py.class
