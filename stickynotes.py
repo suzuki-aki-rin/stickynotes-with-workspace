@@ -10,7 +10,7 @@ from datetime import datetime
 from pathlib import Path
 from tkinter import colorchooser, font, messagebox, simpledialog, ttk
 
-from tkfontselector import ask_font  # pip install tkfontselector
+from tkfontselector import ask_font
 
 #  SECTION:=============================================================
 #            Constants
@@ -667,6 +667,8 @@ class NoteWindow(tk.Toplevel):
         self.text_box.bind("<Button>", self.on_user_activity)
         self.bind("<Motion>", self.on_user_activity)
 
+        self.context_menu = self.set_context_menu(self.text_box)
+
         # Start idle detection
         self.check_idle_state()
 
@@ -692,6 +694,8 @@ class NoteWindow(tk.Toplevel):
 
         # Manual save shortcut
         self.text_box.bind("<Control-s>", lambda event: (self.force_save(), "break"))
+
+        # Context menu in text_box
 
         # update lock_btn label by using the state from the setting file.
         # This function lock the text_box. So, placed here, not to the place lock button is written.
@@ -1072,6 +1076,36 @@ class NoteWindow(tk.Toplevel):
         update_workspace_options(self, new_ws_num)
         self.critical_save_pending = True  # Workspace change is critical
         self.schedule_save(fast=True)
+
+    #  =====================================================================
+    #            Functions: Context menu
+    #  =====================================================================
+
+    def show_context_menu(self, event):
+        self.context_menu.tk_popup(event.x_root, event.y_root)
+
+    def set_context_menu(self, textarea):
+        # --- context menu ---
+        context_menu = tk.Menu(self, tearoff=0)
+        context_menu.add_command(
+            label="Cut", command=lambda: textarea.event_generate("<<Cut>>")
+        )
+        context_menu.add_command(
+            label="Copy", command=lambda: textarea.event_generate("<<Copy>>")
+        )
+        context_menu.add_command(
+            label="Paste", command=lambda: textarea.event_generate("<<Paste>>")
+        )
+        context_menu.add_separator()
+        context_menu.add_command(
+            label="Select All",
+            command=lambda: textarea.tag_add("sel", "1.0", "end"),
+        )
+
+        # right click binding
+        textarea.bind("<Button-3>", self.show_context_menu)  # Linux / Windows
+        textarea.bind("<Button-2>", self.show_context_menu)  # some systems (optional)
+        return context_menu
 
 
 #  SECTION:=============================================================
