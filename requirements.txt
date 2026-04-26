@@ -1,5 +1,5 @@
-pillow==11.3.0
+# Python Python 3.14.4
+pillow==12.2.0
 pystray==0.19.5
-python-xlib==0.33
 six==1.17.0
 tkfontselector==1.0.11
