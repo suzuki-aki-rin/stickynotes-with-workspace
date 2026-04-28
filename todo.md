@@ -1,3 +1,6 @@
+1. state file, Path
+1. Rename note name from other note in setting window.
+note that calls setting window can be renamed now.
 1. group
 
     - group1: note1, note4
