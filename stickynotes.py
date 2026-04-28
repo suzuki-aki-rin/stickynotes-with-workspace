@@ -17,14 +17,14 @@ from tkfontselector import ask_font
 #  =====================================================================
 
 # Save contents and setting to this file when exiting.
-STATE_FILE = "./notes_state.json"
-BACKUP_DIR = "./backups"
+STATE_FILE = str(Path("~/.config/my_stickynotes/notes_state_work.json").expanduser())
+BACKUP_DIR = str(Path("~/.config/my_stickynotes/backups").expanduser())
 
 # Default values. Values in STATE_FILE are preferred.
 # UI FONT requires an Emoji font.
 # UI_FONT = ("Noto Color Emoji", 14)
 UI_FONT = ("Cica", 16)
-TEXT_FONT = ("Cica", 20)
+TEXT_FONT = ("Cica", 16)
 TEXT_COLOR = "black"
 TEXT_BG_COLOR = "white"
 
