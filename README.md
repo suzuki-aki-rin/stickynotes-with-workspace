@@ -34,10 +34,9 @@ apt install wmctrl
 The tasktray backend of your system may be used when no systray backend is specified.
 
 ```python:main.py
-# maybe systerm tasktray manager(backend) is used
-# Can specify xorg for backend by the following code.
-#But it does not respond for mouse click.
-os.environ["PYSTRAY_BACKEND"] = "xorg"
+os.environ["PYSTRAY_BACKEND"] = "gtk"
+# if not specified, "xorg" may be used. "xorg" does not have click menu.
+# "gtk" and "appindicator" may be same.
 ```
 
 - case: ayataka-appindicator(gtk backend)

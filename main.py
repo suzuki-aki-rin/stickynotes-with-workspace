@@ -7,6 +7,10 @@ from PIL import Image, ImageDraw
 
 from stickynotes import StickyNotesApp
 
+# Without it, pystray_background is xorg.
+# gtk and appindicator maybe same
+os.environ["PYSTRAY_BACKEND"] = "gtk"
+
 
 #  SECTION:=============================================================
 #            Task tray
