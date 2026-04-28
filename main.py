@@ -25,13 +25,6 @@ import threading
 
 from stickynotes import StickyNotesApp
 
-# Without it, pystray_background is xorg.
-# gtk and appindicator maybe same
-os.environ["PYSTRAY_BACKEND"] = "gtk"
-import pystray
-from PIL import Image, ImageDraw
-
-
 #  -------- for pyinstaller  ------------------------------------------------------------------------
 
 # If gi is not bundled, fall back to system gi
@@ -39,6 +32,14 @@ if getattr(sys, "frozen", False):  # running as PyInstaller binary
     # Add system Python's site-packages to path
     sys.path.insert(0, "/usr/lib/python3/dist-packages")  # Linux (Debian/Ubuntu)
     # or: '/usr/lib64/python3/site-packages'
+
+# Without it, pystray_background is xorg.
+# gtk and appindicator maybe same
+import pystray
+from PIL import Image, ImageDraw
+
+# after import pystray, load this environment.
+os.environ["PYSTRAY_BACKEND"] = "gtk"
 
 
 #  SECTION:=============================================================
