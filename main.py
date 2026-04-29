@@ -1,45 +1,12 @@
-# For Nuitka , something bad code
-# import sys
-# import subprocess
-#
-# # Must happen before pystray or any gi-dependent import
-# if getattr(sys, "frozen", False) or "__compiled__" in dir():  # running as Nuitka binary
-#     result = subprocess.run(
-#         [
-#             "python3",
-#             "-c",
-#             "import gi, os; print(os.path.dirname(os.path.dirname(gi.__file__)))",
-#         ],
-#         capture_output=True,
-#         text=True,
-#     )
-#     gi_parent = result.stdout.strip()
-#     if gi_parent:
-#         sys.path.insert(0, gi_parent)
-
 import logging
 import os
-import sys
 import threading
 
 
 from stickynotes import StickyNotesApp
 
-#  -------- for pyinstaller  ------------------------------------------------------------------------
-
-# If gi is not bundled, fall back to system gi
-if getattr(sys, "frozen", False):  # running as PyInstaller binary
-    # Add system Python's site-packages to path
-    sys.path.insert(0, "/usr/lib/python3/dist-packages")  # Linux (Debian/Ubuntu)
-    # or: '/usr/lib64/python3/site-packages'
-
-# Without it, pystray_background is xorg.
-# gtk and appindicator maybe same
 import pystray
 from PIL import Image, ImageDraw
-
-# after import pystray, load this environment.
-os.environ["PYSTRAY_BACKEND"] = "gtk"
 
 
 #  SECTION:=============================================================
