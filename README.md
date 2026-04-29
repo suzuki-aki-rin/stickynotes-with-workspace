@@ -32,24 +32,28 @@ apt install wmctrl
 ### Systray
 
 The tasktray backend of your system may be used when no systray backend is specified.
+And no tasktray backend is found, then xorg is used as the backend.
 
-```python:main.py
-os.environ["PYSTRAY_BACKEND"] = "gtk"
-# if not specified, "xorg" may be used. "xorg" does not have click menu.
-# "gtk" and "appindicator" may be same.
+If backend exist, pystray finds the backend. And
+
+```bash
+venv ---system-site-packages
 ```
+
+is possibly enough. I confirmed only gtk bakcgound, though
 
 - case: ayataka-appindicator(gtk backend)
 
-1. if no ayataka backend, install it. These package may not enough.
-My environment has already ayatana-appindicator and gi. I cannot confirm it.
+1. if no ayataka backend, install it.
+I do not confirm if the following packages are enough.
+My environment has already ayatana-appindicator and gi.
 
 ```bash
 # if using ayatana indicator for backend, the install may be:
 apt install python3-gi gir1.2-appindicator3-0.1
 ```
 
-1. set these packages so that they can be used in venv environment.
+1. Set these packages so that they can be used in venv environment.
     1. modify pyvenv.cfg. or venv ---system-site-packages when making venv
 
     ```cfg:venv/pyvenv.cfg
@@ -68,11 +72,17 @@ apt install python3-gi gir1.2-appindicator3-0.1
     ln -s /usr/lib/python3/dist-packages/gi ./venv/lib/python3.14/site-packages/gi
     ```
 
+2. Or install pygobject
+
+```bash
+pip install pygobject
+```
+
 ## Usage
 
 ``` python
-python main.py # with task tray
-python stickynotes.py # without task tray
+python main.py # with systray
+python stickynotes.py # without systray
 ```
 
 - Attention:
@@ -81,4 +91,4 @@ such as using title bar menu, the app cannot track it.
 
 ## Todo
 
-- The features of backup and general settigs.
+- see todo.md
