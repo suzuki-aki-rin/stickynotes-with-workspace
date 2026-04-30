@@ -318,7 +318,7 @@ class SafeSaver:
 
                 except Exception as e:
                     logger.warning(f"Could not load from {file_path_try}: {e}")
-                    continue
+                    raise
 
         # If all files fail, return empty state
         logger.info("Starting with fresh state - no valid save files found")
@@ -385,7 +385,7 @@ class StickyNotesApp(tk.Tk):
             logger.info("State loaded successfully")
         except Exception as e:
             logger.error(f"Critical error loading state: {e}")
-            self.app_state = {"notes": {}}
+            raise SystemExit
 
     def schedule_save(self, fast=False):
         """save scheduling with batching"""
