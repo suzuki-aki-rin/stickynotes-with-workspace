@@ -531,6 +531,7 @@ class NoteWindow(tk.Toplevel):
 
         # text content
         content = state.get("content", "")
+
         # window geometry
         geometry = state.get("geometry")
 
@@ -657,6 +658,10 @@ class NoteWindow(tk.Toplevel):
         )
         self.text_box.pack(side=tk.TOP, expand=tk.TRUE, fill=tk.BOTH)
         self.text_box.insert("1.0", content)
+
+        self.text_box.edit_reset()  # don't let undo erase the loaded text
+        self.text_box.edit_modified(False)  # treat as unmodified baseline
+
         self.text_box.bind("<<Modified>>", self.on_text_change)
 
         # Update font in the texbox
